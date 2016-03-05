@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HotelApp</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.inline-png-1.4.5.min.css">
+</head>
+<body>
+	<div id="home" data-role="page">
+		<div data-role="header">
+			<h1>HotelApp</h1>
+			<a href="#" class="fecha"></a>
+		</div>
+		<div class="ui-content">
+			<ul data-role="listview">
+				<li><a href="#">Nueva Reserva</a></li>
+				<li><a href="#">Historial de Reservas</a></li>
+				<li><a href="#">Reservas Pendientes</a></li>
+				<li><a href="#">Ubicación</a></li>
+				<li><a href="#">Galería</a></li>
+				<li><a href="#">Términos y Condiciones</a></li>
+			</ul>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<span>Todos los derechos reservados</span> <!--span se comporta similar a div, pero en lugar de encimar enlínea -->
+			<a href="#">Nosotros</a>
+		</div>	
+	</div>
+	<div id="registro" data-role="page">
+		<div data-role="header">
+			<h1>Registro</h1>
+		</div>
+		<div data-role="ui-content">
+			<ul data-role="listview">
+				<li>
+					<input id="regName" type="text" placeholder="Tu nombre">
+				</li>
+				<li>
+					<input id="regEmail" type="email" placeholder="Tu email">
+				</li>
+				<li>
+					<input id="regTel" type="tel" placeholder="Tu teléfono">
+				</li>
+				<li>
+					<a href="#">Tomar foto</a>
+				</li>
+				<li id="fotoTomada"></li>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="#" class"ui-btn-active">Registrar</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="phonegap.js"></script>
+	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> <!-- script: siempre van al final-->
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/actions.js"></script>
+</body>
+</html>
