@@ -31,7 +31,7 @@ var fn = {
 		var tel = $("#regTel").val();
 		var foto = $("#fotoTomada").attr("rel");
 		try{
-			if(typeof nombre !== "string"){
+			if(typeof nombre == ""){
 				throw new Error("El nombre no es válido");
 			}
 			if(email == ""){
@@ -56,6 +56,7 @@ var fn = {
 	},
 
 	enviarRegistro: function(nom, email, tel, foto){
+		alert(nom+" "+email+" "+tel)
 		$.ajax({
 			method: "POST",
 			url:"http://carlos.igitsoft.com/apps/test.php",
@@ -65,8 +66,10 @@ var fn = {
 				tel:tel
 			},
 			error: function(e){
-				alert("Error de conexión con AJAX" + e.getMessage());
+				alert("Error de conexión con AJAX");
+				alert(e.response);
 			}
+
 		}).done(function(mensaje){
 			if(mensaje == 1){
 				//Enviar foto

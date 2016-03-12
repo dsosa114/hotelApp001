@@ -26,4 +26,8 @@
         <gap:plugin name="org.apache.cordova.media-capture" />
         <gap:plugin name="org.apache.cordova.file-transfer" />
         <gap:plugin name="org.apache.cordova.vibration" />
+        <gap:plugin name="org.apache.cordova.whitelist" />
+
+        <access origin="*" />
+        <allow-navigation href="http://carlos.igitsoft.com" />
     </widget>
