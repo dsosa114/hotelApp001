@@ -9,7 +9,7 @@ var mc{
     	}
 	}, 
 	error: function(){
-		alert("Error al tomar foto")
+		alert("Error al tomar foto");
 	},
 	abrirCamara: function(){
 		navigator.device.capture.captureImage(mc.exito, mc.error, {limit:1});
