@@ -6,23 +6,39 @@ var fn = {
 
 	init: function(){
 		//Usuario registrado?
-		if(true){
+		if(!fn.estaRegistrado()){
 			window.location.href="#registro"; //window: pantalla del navegador
 		}
+		$("#registro .ui-content a").tap(fn.tomarFoto);
 		$("#registro div[data-role=footer] a").tap(fn.registrar); //jQuery es parecido a css
+
+		fn.ponerFecha();
+	},
+
+	estaRegistrado: function(){
+		if(window.localStorage.getItem("user")){
+			return true;
+		}else{
+			return false;
+		}
+
 	},
 
 	registrar: function(){
 		//Obtener datos del formulario
 		var nombre = $("#regName").val();
-		var email = $("regEmail").val();
-		var tel = $("regTel").val();
+		var email = $("#regEmail").val();
+		var tel = $("#regTel").val();
+		var foto = $("#fotoTomada").attr("rel");
 		try{
 			if(typeof nombre !== "string"){
 				throw new error("El nombre no es válido");
 			}
-			if(email != ""){
+			if(email == ""){
 				throw new error("Debe agregar email");
+			}
+			if(foto == undefined){
+				throw new error("El usuario debe tomar una foto")
 			}
 			if(Number.isNaN(Number(tel))){
 				throw new error("El teléfono no es válido");
@@ -32,19 +48,19 @@ var fn = {
 			}
 
 			//Enviar el registro al servidor
-			fn.enviarRegistro(nombre,email,tel);
+			fn.enviarRegistro(nombre,email,tel,foto);
 
 		}catch(error){
 			alert(error);
 		}
 	},
 
-	enviarRegistro: function(nom, email, tel){
+	enviarRegistro: function(nom, email, tel, foto){
 		$.ajax({
 			method: "POST",
 			url:"http://carlos.igitsoft.com/apps/test.php",
 			data:{
-				nom:nombre,
+				nombre:nom,
 				mail:email,
 				tel:tel
 			},
@@ -54,6 +70,7 @@ var fn = {
 		}).done(function(mensaje){
 			if(mensaje == 1){
 				//Enviar foto
+				ft.transferir(foto);
 			}else{
 				alert("Error al enviar los datos al servidor, mensaje:" + mensaje);
 			}
@@ -69,6 +86,10 @@ var fn = {
 		var hoy = dia + "/" + mes + "/" +year;
 
 		$(".fecha").html(hoy);
+	},
+
+	tomarFoto: function(){
+		mc.abrirCamara();
 	}
 
 };
