@@ -49,7 +49,9 @@ var fn = {
 		//Resetear datos
 		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
 		$("#reserva1").removeAttr("th");
-		$("#reserva2 select").attr("selectedIndex", 0).selectmenu("refresh",true);
+		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh",true);
+
+		alert("Tu reservación fue exitosa, puedes revisarla en tu historial")
 
 		window.location.href = "#home";
 	},
