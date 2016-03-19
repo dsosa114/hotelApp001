@@ -71,8 +71,10 @@ var fn = {
 			}
 
 		}).done(function(mensaje){
+			alert("aaaaa");
 			if(mensaje == 1){
 				//Enviar foto
+				alert("bbbbb");
 				ft.transferir(foto);
 			}else{
 				alert("Error al enviar los datos al servidor, mensaje:" + mensaje);

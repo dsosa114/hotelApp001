@@ -8,7 +8,7 @@
 
         <!-- versionCode is optional and Android only -->
 
-        <preference name="phonegap-version" value="cli-5.2.0" />
+        <preference name="phonegap-version" value="3.7.0" />
 
         <name>HotelApp</name>
 
@@ -26,8 +26,6 @@
         <gap:plugin name="org.apache.cordova.media-capture" />
         <gap:plugin name="org.apache.cordova.file-transfer" />
         <gap:plugin name="org.apache.cordova.vibration" />
-        <gap:plugin name="org.apache.cordova.whitelist" />
-
-        <access origin="*" />
+        
         <allow-navigation href="http://carlos.igitsoft.com" />
     </widget>
