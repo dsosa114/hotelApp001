@@ -61,7 +61,7 @@ var fn = {
 			method: "POST",
 			url:"http://carlos.igitsoft.com/apps/test.php",
 			data:{
-				nombre:nom,
+				nom:nombre,
 				mail:email,
 				tel:tel
 			},
