@@ -4,8 +4,7 @@ var ft = {
 		if(r.response){
 			navigator.notification.alert("Registrado Correctamente", function(){
 				navigator.vibrate(1000);
-				navigator.beep(1);
-
+				navigator.notification.beep(1);
 				window.localStorage.setItem("user", $("#regNom").val());
 				window.location.href = "#home";
 			}, "Bienvenido", "Siguiente");
