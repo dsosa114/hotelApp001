@@ -11,8 +11,72 @@ var fn = {
 		}
 		$("#registro .ui-content a").tap(fn.tomarFoto);
 		$("#registro div[data-role=footer] a").tap(fn.registrar); //jQuery es parecido a css
-
+		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitación);
+		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
+		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 		fn.ponerFecha();
+	},
+
+	SeleccionarTipoHabitación: function(){
+		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
+		$(this).css("background-color", "#03080C");
+		$("#reserva1").attr("th", $(this).text());
+	},
+
+	reserva1Siguiente: function(){
+		if($("#reserva1").attr("th") != undefined){
+			window.location.href = "#reserva2";
+		}else{
+			alert("Es necesario seleccionar un tipo de habitación");
+		}
+	},
+
+	hacerReserva: function(){
+		//Obtenre los datos de la reserva
+		var tipoDeHabitacion = $("#reserva1").attr("th");
+		var numPersonas = $("#numPersonas").val();
+		var numDias = $("#numDias").val();
+		var numHabitaciones = $("#numHabitaciones").val();
+
+		//Enviar datos dependiendo si hay conexion
+		if(ni.estaConectado()){
+			//Enviar al servidor
+			fn.enviarReserva(tipoDeHabitacion,numPersonas, numHabitaciones, numDias);
+		}else{
+			//Guardar localmente
+
+		}
+		//Resetear datos
+		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
+		$("#reserva1").removeAttr("th");
+		$("#reserva2 select").attr("selectedIndex", 0).selectmenu("refresh",true);
+
+		window.location.href = "#home";
+	},
+
+	enviarReserva: function(tipoDeHabitacion,numPersonas,numHabitaciones,numDias){
+		$.ajax({
+			method: "POST",
+			url:"http://carlos.igitsoft.com/apps/test.php",
+			data:{
+				tipo:tipoDeHabitacion,
+				habitaciones:numHabitaciones,
+				personas:numPersonas,
+				dias:numDias
+			},
+			error: function(e){
+				alert("Error de conexión con AJAX");
+				alert(e.response);
+			}
+
+		}).done(function(mensaje){
+			if(mensaje == 1){
+				//Coloca reserva en el historial
+				ft.transferir(foto);
+			}else{
+				alert("Error al guardar reserva en el servidor,:" + mensaje);
+			}
+		});
 	},
 
 	estaRegistrado: function(){
@@ -56,7 +120,7 @@ var fn = {
 	},
 
 	enviarRegistro: function(nom, email, tel, foto){
-		alert(nom+" "+email+" "+tel)
+		//alert(nom+" "+email+" "+tel)
 		$.ajax({
 			method: "POST",
 			url:"http://carlos.igitsoft.com/apps/test.php",
@@ -71,10 +135,8 @@ var fn = {
 			}
 
 		}).done(function(mensaje){
-			alert("aaaaa");
 			if(mensaje == 1){
 				//Enviar foto
-				alert("bbbbb");
 				ft.transferir(foto);
 			}else{
 				alert("Error al enviar los datos al servidor, mensaje:" + mensaje);
