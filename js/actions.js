@@ -22,7 +22,15 @@ var fn = {
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
+
+		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 		fn.ponerFecha();
+	},
+
+	sincronizarReservasPendientes: function(){
+		alert("Se sincronizo las reservas con el servidor");
+		navigator.vibrate(1000);
+		almacen.sincronizarPendientes();
 	},
 
 	mostrarHistorial: function(){
