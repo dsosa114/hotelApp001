@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons-1.4.5.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile.inline-png-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
 </head>
 <body>
 	<div id="home" data-role="page">
@@ -17,7 +18,7 @@
 			<ul data-role="listview">
 				<li><a href="#reserva1">Nueva Reserva</a></li>
 				<li><a href="#historial" id="boton-historial">Historial de Reservas</a></li>
-				<li><a href="#">Reservas Pendientes</a></li>
+				<li><a href="#reservasP" id="boton-reservasp">Reservas Pendientes</a></li>
 				<li><a href="#">Ubicación</a></li>
 				<li><a href="#">Galería</a></li>
 				<li><a href="#">Términos y Condiciones</a></li>
@@ -134,7 +135,7 @@
 			<a href="#" data-rel="back">Atrás</a>
 		</div>
 		<div class="ui-content">
-			<table>
+			<table class="informacion">
 				<thead>
 					<tr>
 						<th>Tipo de habitación</th>
@@ -147,7 +148,26 @@
 				</tbody>
 			</table>
 		</div>
-
+	</div>
+	<div data-role="page" id="reservasP">
+		<div data-role="header">
+			<h1>Reservas Pendientes</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<table class="informacion">
+				<thead>
+					<tr>
+						<th>Tipo de habitación</th>
+						<th>Número de personas</th>
+						<th>Número de habitaciones</th>
+						<th>Número de días</th>
+					</tr>
+				</thead>
+				<tbody id="listaReservasPendientes">
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<script type="text/javascript" src="phonegap.js"></script>
 	<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script> <!-- script: siempre van al final-->

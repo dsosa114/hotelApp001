@@ -21,11 +21,16 @@ var fn = {
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
 		$("#boton-historial").tap(fn.mostrarHistorial);
+		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		fn.ponerFecha();
 	},
 
 	mostrarHistorial: function(){
 		almacen.cargarDatosHistorial();
+	},
+
+	mostrarReservasP: function(){
+		almacen.cargarDatosReservasP();
 	},
 
 	SeleccionarTipoHabitación: function(){
@@ -55,7 +60,7 @@ var fn = {
 			fn.enviarReserva(tipoDeHabitacion,numPersonas, numHabitaciones, numDias);
 		}else{
 			//Guardar localmente
-
+			almacen.guardarReservaLocal(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 		}
 		//Resetear datos
 		$("#reserva1 ul[data-role=listview] a").css("background-color", "");
