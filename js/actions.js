@@ -1,3 +1,9 @@
+/*Los tres objetos mas importantes de JavaScript son:
+--document
+--window
+--navigator
+*/
+
 var fn = {
 	deviceready: function(){
 		//Esto es necesario para PhoneGap para que pueda ejecutar la aplicación
@@ -14,7 +20,12 @@ var fn = {
 		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitación);
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
+		$("#boton-historial").tap(fn.mostrarHistorial);
 		fn.ponerFecha();
+	},
+
+	mostrarHistorial: function(){
+		almacen.cargarDatosHistorial();
 	},
 
 	SeleccionarTipoHabitación: function(){
@@ -74,7 +85,7 @@ var fn = {
 		}).done(function(mensaje){
 			if(mensaje == 1){
 				//Coloca reserva en el historial
-				ft.transferir(foto);
+				almacen.guardarReservaHistorial(tipoDeHabitacion, numPersonas, numHabitaciones, numDias);
 			}else{
 				alert("Error al guardar reserva en el servidor,:" + mensaje);
 			}
