@@ -20,7 +20,7 @@
 				<li><a href="#historial" id="boton-historial">Historial de Reservas</a></li>
 				<li><a href="#reservasP" id="boton-reservasp">Reservas Pendientes</a></li>
 				<li><a href="#ubicacion" id="boton-ubicacion">Ubicación</a></li>
-				<li><a href="#">Galería</a></li>
+				<li><a href="#galeria" id="boton-galeria">Galería</a></li>
 				<li><a href="#">Términos y Condiciones</a></li>
 			</ul>
 		</div>
@@ -169,16 +169,26 @@
 			</table>
 		</div>
 	</div>
-	<div data-role"page" id="ubicacion">
+	<div data-role="page" id="ubicacion">
 		<div data-role="header">
 			<h1>Ubicación</h1>
-			<a href="#" data-rel="back"></a>
+			<a href="#" data-rel="back">Atrás</a>
 		</div>
 		<div class="mapa">
 			<div id="canvas">
 			</div>
 		</div>
 
+	</div>
+	<div data-role="page" id="galeria">
+		<div data-role="header">
+			<h1>Galería</h1>
+			<a href="#" data-rel="back">Atrás</a>
+		</div>
+		<div class="ui-content">
+			<div id="gallery" class="ui-grid-a">
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function mapa(){
@@ -194,6 +204,5 @@
 	<script type="text/javascript" src="js/API/file-transfer.js"></script>
 	<script type="text/javascript" src="js/API/network-information.js"></script>
 	<script type="text/javascript" src="js/API/geolocation.js"></script>
-    async defer></script>
 </body>
 </html>

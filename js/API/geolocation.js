@@ -25,7 +25,7 @@ var gl = {
 
 		var map = new google.maps.Map(document.getElementById("canvas"), options);
 
-		var directionsDisplay = new google.maps.DirectionsRender({
+		var directionsDisplay = new google.maps.DirectionsRenderer({
 			map: map
 		});
 

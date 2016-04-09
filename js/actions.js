@@ -23,6 +23,7 @@ var fn = {
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
+		$("#boton-galeria").tap´(fn.llenarGalería);
 
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 		fn.ponerFecha();
@@ -187,6 +188,21 @@ var fn = {
 
 	tomarFoto: function(){
 		mc.abrirCamara();
+	},
+
+	llenarGalería: function(){
+
+		var impar = true;
+
+		for(var = 1; i<=8; i++){
+			if(impar){
+				$("#gallery").append('<div class="ui-block-a"><img src="../img/galeria/' + i + '.jpg"></div>');
+				impar = false;
+			}else{
+				$("#gallery").append('<div class="ui-block-b"><img src="../img/galeria/' + i + '.jpg"></div>');
+				impar = true;
+			}
+		}
 	}
 
 };
