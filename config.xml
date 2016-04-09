@@ -27,6 +27,7 @@
         <gap:plugin name="org.apache.cordova.file-transfer" />
         <gap:plugin name="org.apache.cordova.vibration" />
         <gap:plugin name="org.apache.cordova.network-information"/>
+        <gap:plugin name="org.apache.cordova.geolocation"/>
         
         <allow-navigation href="http://carlos.igitsoft.com" />
     </widget>
