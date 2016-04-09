@@ -192,14 +192,14 @@ var fn = {
 
 	llenarGalería: function(){
 
+		$("#gallery").html('');
 		var impar = true;
-
 		for(var = 1; i<=8; i++){
 			if(impar){
-				$("#gallery").append('<div class="ui-block-a"><img src="../img/galeria/' + i + '.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/' + i + '.jpg"></div>');
 				impar = false;
 			}else{
-				$("#gallery").append('<div class="ui-block-b"><img src="../img/galeria/' + i + '.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-b"><img class="foto-geleria" src="img/galeria/' + i + '.jpg"></div>');
 				impar = true;
 			}
 		}
