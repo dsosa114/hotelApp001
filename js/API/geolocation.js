@@ -15,7 +15,7 @@ var gl = {
 				lat: gl.latitud,
 				lng: gl.longitud
 			}.
-			mapTypeId:google.mapas.mapTypeId.RADMAP;
+			mapTypeId:google.mapas.MapTypeId.ROADMAP
 		};
 
 		var map = new google.maps.Map(document.getElementById("canvas"), options);
