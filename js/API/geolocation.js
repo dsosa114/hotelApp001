@@ -1,6 +1,6 @@
 var gl = {
-	latitud = null;
-	longitud = null;
+	latitud: null,
+	longitud: null,
 
 	error: function(error){
 		alert("Error: " + error.message);
@@ -12,7 +12,7 @@ var gl = {
 		var hotel = {
 			lat: 19.046583,
 			lng: -98.207966
-		}
+		};
 
 		var options = {
 			zoom: 13,
