@@ -23,7 +23,7 @@ var fn = {
 		$("#boton-historial").tap(fn.mostrarHistorial);
 		$("#boton-reservasp").tap(fn.mostrarReservasP);
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
-		$("#boton-galeria").tap´(fn.llenarGalería);
+		$("#boton-galeria").tap(fn.llenarGalería);
 
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 		fn.ponerFecha();
@@ -194,7 +194,7 @@ var fn = {
 
 		$("#gallery").html('');
 		var impar = true;
-		for(var = 1; i<=8; i++){
+		for(var i = 1; i<=8; i++){
 			if(impar){
 				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/' + i + '.jpg"></div>');
 				impar = false;
