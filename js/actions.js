@@ -53,11 +53,15 @@ var fn = {
 	},
 
 	mostrarHistorial: function(){
+		$.mobile.loading('show');
 		almacen.cargarDatosHistorial();
+		$.mobile.loading('hide');
 	},
 
 	mostrarReservasP: function(){
+		$.mobile.loading('show');
 		almacen.cargarDatosReservasP();
+		$.mobile.loading('hide');
 	},
 
 	SeleccionarTipoHabitación: function(){
@@ -75,6 +79,7 @@ var fn = {
 	},
 
 	hacerReserva: function(){
+		$.mobile.loading('show');
 		//Obtenre los datos de la reserva
 		var tipoDeHabitacion = $("#reserva1").attr("th");
 		var numPersonas = $("#numPersonas").val();
@@ -94,6 +99,7 @@ var fn = {
 		$("#reserva1").removeAttr("th");
 		$("#reserva2 select").prop("selectedIndex", 0).selectmenu("refresh",true);
 
+		$.mobile.loading('hide');
 		alert("Tu reservación fue exitosa, puedes revisarla en tu historial")
 
 		window.location.href = "#home";
@@ -134,6 +140,7 @@ var fn = {
 	},
 
 	registrar: function(){
+		$.mobile.loading('show');
 		//Obtener datos del formulario
 		var nombre = $("#regName").val();
 		var email = $("#regEmail").val();
@@ -158,8 +165,10 @@ var fn = {
 
 			//Enviar el registro al servidor
 			fn.enviarRegistro(nombre,email,tel,foto);
+			$.mobile.loading('hide');
 
 		}catch(error){
+			$.mobile.loading('hide');
 			alert(error);
 		}
 	},
