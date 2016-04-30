@@ -13,7 +13,7 @@ var fn = {
 	init: function(){
 		//Usuario registrado?
 		if(!fn.estaRegistrado()){
-		//	window.location.href="#registro"; //window: pantalla del navegador
+			window.location.href="#registro"; //window: pantalla del navegador
 		}
 		$("#boton-sesion").tap(fn.cerrarSesion);
 		$("#registro .ui-content a").tap(fn.tomarFoto);
@@ -272,9 +272,9 @@ var fn = {
 };
 
 //EJECUTAR EN PHONEGAP
-//$(fn.deviceready);
+//
+$(fn.deviceready);
 
 //EJECUTAR EN NAVEGADOR
 //fn.init(); Ejecución por JS
-//
-$(fn.init); //Ejecución por jQuery
+//$(fn.init); //Ejecución por jQuery
