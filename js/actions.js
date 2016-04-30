@@ -15,7 +15,8 @@ var fn = {
 		if(!fn.estaRegistrado()){
 			window.location.href="#registro"; //window: pantalla del navegador
 		}
-		$("#boton-sesion").tap(fn.cerrarSesion);
+		$("#boton-cerrar-sesion").tap(fn.cerrarSesion);
+		$("#boton-iniciar-sesion").tap(fn.iniciarSesion);
 		$("#registro .ui-content a").tap(fn.tomarFoto);
 		$("#registrar").tap(fn.registrar); //jQuery es parecido a css
 		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitación);
@@ -33,10 +34,35 @@ var fn = {
 		fn.ponerFecha();
 	},
 
+	iniciarSesion: function(){
+		var mail = document.getElementById("usrEmail").value;
+		var password = document.getElementById("usrPass").value;
+
+		if(mail == "" && password == ""){
+			alert("Error: No se proporciono usuario ni contraseña");
+		}
+		else if(mail == ""){
+			alert("Debe introducir email");
+		}
+		else if(password == ""){
+			alert("Debe introducir contraseña");
+		}
+		else{
+			try{
+				almacen.comprobarExistenciaUsuario(mail, password);
+			} catch(error){
+				console.log("Base de datos no disponible por el momento. Error: " + error);
+				alert("Base de datos no disponible por el momento. Error: " + error);
+				window.localStorage.setItem('user', mail);
+				window.location.href="#home";
+			}
+		}
+	},
+
 	cerrarSesion: function(e){
 		window.localStorage.removeItem('user');
 			try{
-				navigator.notification.alert("Cerrar sesión", function(){
+				navigator.notification.alert("Sesión finalizada con éxito", function(){
 					//navigator.vibrate(1000);
 					navigator.notification.beep(1);
 					$("#boton-sesion").text('Iniciar sesión')
@@ -47,7 +73,7 @@ var fn = {
                  		.addClass("ui-btn-active");
 						
 					window.location.href = "#registro";
-				}, "Sesión finalizada con éxito", "Aceptar");
+				}, "Cerrar sesión", "Aceptar");
 			} catch(error){
 				alert("Sesión finalizada con éxito");
 				console.log("Error: " + error);
@@ -177,6 +203,7 @@ var fn = {
 		var nombre = $("#regName").val();
 		var email = $("#regEmail").val();
 		var tel = $("#regTel").val();
+		var contraseña = $("#regPass").val();
 		var foto = $("#fotoTomada").attr("rel");
 		try{
 			if(typeof nombre == ""){
@@ -184,6 +211,9 @@ var fn = {
 			}
 			if(email == ""){
 				throw new Error("Debe agregar email");
+			}
+			if(password == ""){
+				throw new Error("Debe agregar contraseña");
 			}
 			if(foto == undefined){
 				throw new Error("El usuario debe tomar una foto")
@@ -197,6 +227,7 @@ var fn = {
 
 			//Enviar el registro al servidor
 			fn.enviarRegistro(nombre,email,tel,foto);
+			almacen.guardarUsuarios(nombre, contraseña);
 			$.mobile.loading('hide');
 
 		}catch(error){
@@ -272,9 +303,9 @@ var fn = {
 };
 
 //EJECUTAR EN PHONEGAP
-//
-$(fn.deviceready);
+//$(fn.deviceready);
 
 //EJECUTAR EN NAVEGADOR
 //fn.init(); Ejecución por JS
-//$(fn.init); //Ejecución por jQuery
+//
+$(fn.init); //Ejecución por jQuery

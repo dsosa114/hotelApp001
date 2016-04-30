@@ -4,6 +4,8 @@ var almacen = {
 	numPersonas: null,
 	numHabitaciones: null,
 	numDias: null,
+	correo: null,
+	password: null,
 
 	conectarDB: function(){
 		return window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
@@ -18,6 +20,14 @@ var almacen = {
 
 	},
 
+	comprobarExistenciaUsuario: function(mail, password){
+		almacen.db				= almacen.conectarDB();
+		almacen.correo			= mail;
+		almacen.password		= password;
+
+		almacen.db.transaction(almacen.leerUsuarios, almacen.error, almacen.exito);
+	},
+
 	guardarReservasHistorial: function(th, np, nh, nd){
 		almacen.db				= almacen.conectarDB();
 		almacen.tipoHabitacion  = th;
@@ -26,6 +36,15 @@ var almacen = {
 		almacen.numDias 		= nd;
 
 		almacen.db.transaction(almacen.tablaHistorial, almacen.error, almacen.exito);
+
+	},
+
+	guardarUsuarios: function(mail, password){
+		almacen.db				= almacen.conectarDB();
+		almacen.correo			= mail;
+		almacen.password		= password;
+
+		almacen.db.transaction(almacen.tablaUsuarios, almacen.error, almacen.exito);
 
 	},
 
@@ -45,6 +64,13 @@ var almacen = {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS historial (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		//Insertar los datos de la nueva reservacion
 		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES ("' + alamacen.tipoHabitacion + '", ' + alamacen.numPersonas + ', ' + alamacen.numHabitaciones + ', ' + numDias + ')');
+	},
+
+	tablaUsuarios:function(tx){
+		//Crear tabla de historial
+		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
+		//Insertar los datos de la nueva reservacion
+		tx.executeSql('INSERT INTO usuarios (correo, password) VALUES ("' + alamacen.correo + '", "' + alamacen.password + '")'); 
 	},
 
 	tablaReservasPendientes:function(tx){
@@ -69,6 +95,13 @@ var almacen = {
 		tx.executeSql('CREATE TABLE IF NOT EXISTS historial (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		//leer tabla historial
 		tx.executeSql('SELECT * FROM historial', [], almacen.mostrarResultadosHistorial);
+	},
+
+	leerUsuarios: function(tx){
+		//Crear tabla de historial
+		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
+		//leer tabla historial
+		tx.executeSql('SELECT * FROM usuarios', [], almacen.validarUsuario);
 	},
 
 	leerReservasP: function(tx){
@@ -145,6 +178,41 @@ var almacen = {
 				tx.executeSql('DELETE FROM reservas_pendientes WHERE id = "' + res.rows.item(i).id + '"');
 
 			}
+		}
+	},
+
+	validarUsuario:function(tx, res){
+		var cantidad = res.rows.length;
+		var coincidencias = 0;
+
+		if(cantidad > 0){
+			for(var i = 0; i < cantidad; i++){
+				var mail = res.rows.item(i).correo;
+				var pass = res.rows.item(i).password;
+
+				if(mail == almacen.correo){
+					if(pass == alamacen.password){
+						coincidencias = 1;
+						break;
+					}
+				}
+			}
+			if(coincidencias > 0){
+				navigator.notification.alert("Sesión iniciada correctamente", function(){
+					navigator.vibrate(1000);
+					navigator.notification.beep(1);
+					window.localStorage.setItem("user", almacen.correo);
+					window.location.href="#home";
+				}, "Bienvenido", "Siguiente");
+			} else {
+				navigator.notification.alert("Usuario o contraseña no válidos", function(){
+					
+				}, "Error", "Aceptar");
+			}
+		} else {
+			navigator.notification.alert("Usuario o contraseña no válidos", function(){
+					
+			}, "Error", "Aceptar");
 		}
 	}
 };

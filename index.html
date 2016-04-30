@@ -13,7 +13,7 @@
 		<div data-role="header">
 			<h1>HotelApp</h1>
 			<a href="#" class="fecha"></a>
-			<a href="#" id="boton-sesion" data-role="button" data-icon="delete" class="ui-btn-active">Cerrar Sesión</a>
+			<a href="#" id="boton-cerrar-sesion" data-role="button" data-icon="delete" class="ui-btn-active">Cerrar Sesión</a>
 		</div>
 		<div class="ui-content">
 			<ul data-role="listview">
@@ -43,6 +43,9 @@
 					<input id="regEmail" type="email" placeholder="Tu email">
 				</li>
 				<li>
+					<input id="regPass" type="password" placeholder="Tu contraseña">
+				</li>
+				<li>
 					<input id="regTel" type="tel" placeholder="Tu teléfono">
 				</li>
 				<li>
@@ -66,15 +69,24 @@
 	</div>
 	<div id="inicioSesion" data-role="page">
 		<div data-role="header">
-			<h1>Iniciar Seción</h1>
+			<h1>Iniciar Sesión</h1>
 		</div>
 		<div class="ui-content">
+			<ul data-role="listview">
+			<li data-role="list-divider">Correo de usuario</li>
+			<li>
+				<input id="usrEmail" type="email" placeholder="Tu email">
+			</li>
+			<li data-role="list-divider">Contraseña</li>
+			<li>
+				<input id="usrPass" type="password" placeholder="Tu contraseña">
+			</li>
+			</ul>
 		</div>
 		<div data-role="footer" data-position="fixed">
 			<div data-role="navbar">
 				<ul>
-					<li><a href="#" data-rel="back">Cancelar</a></li>
-					<li><a href="#" class="ui-btn-active">Siguiente</a></li>
+					<li><a id="boton-iniciar-sesion" href="#" class="ui-btn-active">Iniciar</a></li>
 				</ul>
 			</div>
 		</div>
