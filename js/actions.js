@@ -34,7 +34,7 @@ var fn = {
 	},
 
 	cerrarSesion: function(e){
-		window.localStorage.setItem('user', null);
+		window.localStorage.removeItem('user');
 			try{
 				navigator.notification.alert("Cerrar sesión", function(){
 					//navigator.vibrate(1000);
