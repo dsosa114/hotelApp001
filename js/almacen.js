@@ -63,21 +63,21 @@ var almacen = {
 		//Crear tabla de historial
 		tx.executeSql('CREATE TABLE IF NOT EXISTS historial (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		//Insertar los datos de la nueva reservacion
-		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES ("' + alamacen.tipoHabitacion + '", ' + alamacen.numPersonas + ', ' + alamacen.numHabitaciones + ', ' + numDias + ')');
+		tx.executeSql('INSERT INTO historial (tipoh, nump, numh, numd) VALUES ("' + almacen.tipoHabitacion + '", ' + almacen.numPersonas + ', ' + almacen.numHabitaciones + ', ' + almacen.numDias + ')');
 	},
 
 	tablaUsuarios:function(tx){
 		//Crear tabla de historial
 		tx.executeSql('CREATE TABLE IF NOT EXISTS usuarios (id INTEGER PRIMARY KEY, correo, password)');
 		//Insertar los datos de la nueva reservacion
-		tx.executeSql('INSERT INTO usuarios (correo, password) VALUES ("' + alamacen.correo + '", "' + alamacen.password + '")'); 
+		tx.executeSql('INSERT INTO usuarios (correo, password) VALUES ("' + almacen.correo + '", "' + almacen.password + '")'); 
 	},
 
 	tablaReservasPendientes:function(tx){
 		//Crear tabla de reservas_pendientes
 		tx.executeSql('CREATE TABLE IF NOT EXISTS reservas_pendientes (id INTEGER PRIMARY KEY, tipoh, nump, numh, numd)');
 		//Insertar los datos de la nueva reservacion
-		tx.executeSql('INSERT INTO reservas_pendientes (tipoh, nump, numh, numd) VALUES ("' + alamacen.tipoHabitacion + '", ' + alamacen.numPersonas + ', ' + alamacen.numHabitaciones + ', ' + numDias + ')');
+		tx.executeSql('INSERT INTO reservas_pendientes (tipoh, nump, numh, numd) VALUES ("' + almacen.tipoHabitacion + '", ' + almacen.numPersonas + ', ' + almacen.numHabitaciones + ', ' + almacen.numDias + ')');
 	},
 
 	cargarDatosHistorial: function(){
