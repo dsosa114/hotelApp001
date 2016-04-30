@@ -226,8 +226,9 @@ var fn = {
 			}
 
 			//Enviar el registro al servidor
+			almacen.guardarUsuarios(email, contraseña);
 			fn.enviarRegistro(nombre,email,tel,foto);
-			//almacen.guardarUsuarios(nombre, contraseña);
+			//
 			$.mobile.loading('hide');
 
 		}catch(error){
