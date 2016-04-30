@@ -20,7 +20,8 @@
             Daniel Sosa
         </author>
 
-        <icon src="img/icon.png" />
+        <icon src="img/icon.jpg" />
+        <splash src="img/splash.png" />
 
         <gap:plugin name="org.apache.cordova.dialogs" />
         <gap:plugin name="org.apache.cordova.media-capture" />
