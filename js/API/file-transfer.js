@@ -5,7 +5,7 @@ var ft = {
 			navigator.notification.alert("Registrado Correctamente", function(){
 				navigator.vibrate(1000);
 				navigator.notification.beep(1);
-				window.localStorage.setItem("user", $("#regNom").val());
+				window.localStorage.setItem("user", $("#regName").val());
 				window.location.href = "#home";
 			}, "Bienvenido", "Siguiente");
 		}else{

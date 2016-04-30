@@ -1,9 +1,9 @@
 var almacen = {
 	db: null,
-	tipoHabitacion: null;
-	numPersonas: null;
-	numHabitaciones: null;
-	numDias: null;
+	tipoHabitacion: null,
+	numPersonas: null,
+	numHabitaciones: null,
+	numDias: null,
 
 	conectarDB: function(){
 		return window.openDatabase("hotelApp", "1.0", "Hotel App", 200000);
@@ -130,7 +130,7 @@ var almacen = {
 		tx.executeSql('SELECT * FROM reservas_pendientes', [], almacen.procesarPendientes);
 	},
 
-	procesarPendientes: function(tx.res){
+	procesarPendientes: function(tx, res){
 		var cantidad = res.rows.length;
 
 		if(cantidad > 0){

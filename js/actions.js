@@ -13,10 +13,11 @@ var fn = {
 	init: function(){
 		//Usuario registrado?
 		if(!fn.estaRegistrado()){
-			window.location.href="#registro"; //window: pantalla del navegador
+		//	window.location.href="#registro"; //window: pantalla del navegador
 		}
+		$("#boton-sesion").tap(fn.cerrarSesion);
 		$("#registro .ui-content a").tap(fn.tomarFoto);
-		$("#registro div[data-role=footer] a").tap(fn.registrar); //jQuery es parecido a css
+		$("#registrar").tap(fn.registrar); //jQuery es parecido a css
 		$("#reserva1 ul[data-role=listview] a").tap(fn.SeleccionarTipoHabitación);
 		$("#reserva1 div[data-role=navbar] .ui-btn-active").tap(fn.reserva1Siguiente);
 		$("#reserva2 div[data-role=navbar] .ui-btn-active").tap(fn.hacerReserva);
@@ -25,13 +26,58 @@ var fn = {
 		$("#boton-ubicacion").tap(fn.mostrarUbicacion);
 		$("#boton-galeria").tap(fn.llenarGalería);
 
+		$(document).on('pagebeforeshow', '#galeria',function (e){
+			$("#gallery .foto-galeria").off('tap').on('tap', fn.mostrarDescripcionFoto);
+		});
 		document.addEventListener("online", fn.sincronizarReservasPendientes, false);
 		fn.ponerFecha();
+	},
+
+	cerrarSesion: function(e){
+		window.localStorage.setItem('user', null);
+			try{
+				navigator.notification.alert("Cerrar sesión", function(){
+					//navigator.vibrate(1000);
+					navigator.notification.beep(1);
+					$("#boton-sesion").text('Iniciar sesión')
+				 		.attr('data-icon', 'check')
+                 		//.find('.ui-icon')
+                 		.addClass('ui-icon-check')
+                 		.removeClass('ui-icon-delete')
+                 		.addClass("ui-btn-active");
+						
+					window.location.href = "#registro";
+				}, "Sesión finalizada con éxito", "Aceptar");
+			} catch(error){
+				alert("Sesión finalizada con éxito");
+				console.log("Error: " + error);
+				$("#boton-sesion").text('Iniciar sesión')
+				 	.attr('data-icon', 'check')
+                 	//.find('.ui-icon')
+                 	.addClass('ui-icon-check')
+                 	.removeClass('ui-icon-delete')
+                 	.addClass("ui-btn-active");
+                window.location.href="#registro";
+			}
+			//$("#boton-sesion")
+			
+            //
+	},
+
+	mostrarDescripcionFoto: function(){
+		var descripcion = $(this).attr('desc');
+		var fuente = $(this).attr('src')
+		$("#fotoDescripcion").empty();
+		$("#fotoDescripcion").append('<img class="foto-galeria" src="' + fuente + '" desc="' + descripcion +'" >\
+									  <p>'+ descripcion +'</p> ');
+		$("#popupFoto").popup("open");
+		
 	},
 
 	mostrarUbicacion: function(){
 		$.getScript('https//:maps.googleapis.com/maps/api/js?key=AIzaSyBIxqfWtl8iH2jm0uDrQKomHAgwpxe2JmA&callback=mapa');
 	},
+
 	sincronizarReservasPendientes: function(){
 		alert("Se sincronizo las reservas con el servidor");
 		navigator.vibrate(1000);
@@ -192,14 +238,23 @@ var fn = {
 
 	llenarGalería: function(){
 
+		var arreglo_descripciones = ['descripcion 1', 
+									 'descripcion 2', 
+									 'descripcion 3', 
+									 'descripcion 4',
+									 'descripcion 5', 
+									 'descripcion 6', 
+									 'descripcion 7', 
+									 'descripcion 8'];
+
 		$("#gallery").html('');
 		var impar = true;
 		for(var i = 1; i<=8; i++){
 			if(impar){
-				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/' + i + '.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-a"><img class="foto-galeria" src="img/galeria/' + i + '.jpg" desc="' + arreglo_descripciones[i - 1] +'" ></div>');
 				impar = false;
 			}else{
-				$("#gallery").append('<div class="ui-block-b"><img class="foto-geleria" src="img/galeria/' + i + '.jpg"></div>');
+				$("#gallery").append('<div class="ui-block-b"><img class="foto-galeria" src="img/galeria/' + i + '.jpg" desc="' + arreglo_descripciones[i - 1] +'"></div>');
 				impar = true;
 			}
 		}
@@ -208,9 +263,9 @@ var fn = {
 };
 
 //EJECUTAR EN PHONEGAP
-//
-$(fn.deviceready);
+//$(fn.deviceready);
 
 //EJECUTAR EN NAVEGADOR
 //fn.init(); Ejecución por JS
-//$(fn.init); //Ejecución por jQuery
+//
+$(fn.init); //Ejecución por jQuery

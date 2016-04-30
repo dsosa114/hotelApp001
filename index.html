@@ -13,6 +13,7 @@
 		<div data-role="header">
 			<h1>HotelApp</h1>
 			<a href="#" class="fecha"></a>
+			<a href="#" id="boton-sesion" data-role="button" data-icon="delete" class="ui-btn-active">Cerrar Sesión</a>
 		</div>
 		<div class="ui-content">
 			<ul data-role="listview">
@@ -54,8 +55,26 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="#" class="ui-btn-active">Registrar</a>
+						<a href="#" id="registrar">Registrar</a>
 					</li>
+					<li>
+						<a href="#inicioSesion" class="ui-btn-active">Iniciar Sesión</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="inicioSesion" data-role="page">
+		<div data-role="header">
+			<h1>Iniciar Seción</h1>
+		</div>
+		<div class="ui-content">
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#" data-rel="back">Cancelar</a></li>
+					<li><a href="#" class="ui-btn-active">Siguiente</a></li>
 				</ul>
 			</div>
 		</div>
@@ -189,6 +208,17 @@
 		<div class="ui-content">
 			<div id="gallery" class="ui-grid-a">
 			</div>
+		</div>
+		<div id="popupFoto" data-role="popup">
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<div id="fotoDescripcion" class="ui-content">
+				<img class="foto-galeria" src="img/galeria/1.jpg">
+				<p> Hola mundo</p>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="fotoGaleria">
+		<div data-role="header">
 		</div>
 	</div>
 	<script type="text/javascript">
