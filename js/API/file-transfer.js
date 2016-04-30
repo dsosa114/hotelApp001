@@ -6,6 +6,7 @@ var ft = {
 				navigator.vibrate(1000);
 				navigator.notification.beep(1);
 				window.localStorage.setItem("user", $("#regName").val());
+				almacen.guardarUsuarios(email, contrasenia);
 				window.location.href = "#home";
 			}, "Bienvenido", "Siguiente");
 		}else{

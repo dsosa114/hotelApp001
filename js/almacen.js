@@ -184,14 +184,14 @@ var almacen = {
 	validarUsuario:function(tx, res){
 		var cantidad = res.rows.length;
 		var coincidencias = 0;
-
+		alert(cantidad);
 		if(cantidad > 0){
 			for(var i = 0; i < cantidad; i++){
 				var mail = res.rows.item(i).correo;
 				var pass = res.rows.item(i).password;
-
+				alert(mail + ',' + almacen.correo + ',' + pass + ',' + almacen.password);
 				if(mail == almacen.correo){
-					if(pass == alamacen.password){
+					if(pass == almacen.password){
 						coincidencias = 1;
 						break;
 					}
