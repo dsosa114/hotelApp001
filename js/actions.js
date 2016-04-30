@@ -212,7 +212,7 @@ var fn = {
 			if(email == ""){
 				throw new Error("Debe agregar email");
 			}
-			if(password == ""){
+			if(contraseña == ""){
 				throw new Error("Debe agregar contraseña");
 			}
 			if(foto == undefined){
@@ -303,9 +303,9 @@ var fn = {
 };
 
 //EJECUTAR EN PHONEGAP
-//$(fn.deviceready);
+//
+$(fn.deviceready);
 
 //EJECUTAR EN NAVEGADOR
 //fn.init(); Ejecución por JS
-//
-$(fn.init); //Ejecución por jQuery
+//$(fn.init); //Ejecución por jQuery
